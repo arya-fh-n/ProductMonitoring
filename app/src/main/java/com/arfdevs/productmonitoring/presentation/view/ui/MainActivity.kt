@@ -1,10 +1,11 @@
-package com.arfdevs.productmonitoring
+package com.arfdevs.productmonitoring.presentation.view.ui
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.arfdevs.productmonitoring.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
