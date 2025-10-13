@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.arfdevs.productmonitoring"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.arfdevs.productmonitoring"
@@ -17,6 +17,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL", "\"https://localhost:3000/v1/\"")
     }
 
     buildTypes {
@@ -36,6 +38,7 @@ android {
         jvmTarget = "17"
     }
     buildFeatures {
+        buildConfig = true
         viewBinding = true
     }
 }
@@ -72,9 +75,12 @@ dependencies {
     implementation(libs.room.paging)
     ksp(libs.room.compiler)
 
+    implementation(libs.datastore)
+
     //di
     implementation(libs.koin.core)
     implementation(libs.koin.android)
+    implementation(libs.koin.compose)
 
     //lottie
     implementation(libs.lottie)
@@ -82,4 +88,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //chucker
+    debugImplementation(libs.chucker)
 }
