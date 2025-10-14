@@ -6,11 +6,12 @@ import com.arfdevs.productmonitoring.di.domainModule
 import com.arfdevs.productmonitoring.di.localModule
 import com.arfdevs.productmonitoring.di.mapperModule
 import com.arfdevs.productmonitoring.di.networkModule
+import com.arfdevs.productmonitoring.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
-class ProductMonitoringApp: Application() {
+class ProductMonitoringApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -24,7 +25,8 @@ class ProductMonitoringApp: Application() {
                 localModule,
                 dispatchersModule,
                 mapperModule,
-                domainModule
+                domainModule,
+                viewModelModule
             )
         }
     }

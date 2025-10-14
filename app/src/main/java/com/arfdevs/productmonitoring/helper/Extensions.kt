@@ -20,11 +20,11 @@ private fun <Input, Output> mapErrors(
     val emptyStateCodes = listOf(422, 404, 403, 409, 406, 401)
 
     return if (emptyStateCodes.contains(result.code)) DomainResult.EmptyState(
-        result.message,
+        "${result.message} : ${result.error}",
         result.code,
         result.code
     ) else DomainResult.ErrorState(
-        result.message,
+        "${result.message} : ${result.error}",
         result.code
     )
 }
