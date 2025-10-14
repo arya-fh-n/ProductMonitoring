@@ -4,12 +4,20 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.arfdevs.productmonitoring.data.remote.response.LoginResponse
 import com.arfdevs.productmonitoring.helper.Local
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class SessionManager(private val dataStore: DataStore<Preferences>) {
-    suspend fun saveSession(username: String, token: String) {
+    suspend fun startNewSession(login: LoginResponse) {
+        saveSession(
+            username = login.user?.username.orEmpty(),
+            token = login.token.orEmpty()
+        )
+    }
+
+    private suspend fun saveSession(username: String, token: String) {
         dataStore.edit { prefs ->
             prefs[USERNAME] = username
             prefs[AUTH_TOKEN_KEY] = token
@@ -20,7 +28,7 @@ class SessionManager(private val dataStore: DataStore<Preferences>) {
         prefs[AUTH_TOKEN_KEY]
     }
 
-    val username: Flow<String> = dataStore.data.map {  prefs ->
+    val username: Flow<String?> = dataStore.data.map { prefs ->
         prefs[USERNAME] ?: ""
     }
 

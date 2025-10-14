@@ -8,7 +8,7 @@ import com.arfdevs.productmonitoring.helper.Local
 
 @Entity(tableName = Local.PRODUK_TOKO)
 data class ProdukTokoEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = Column.ID)
     val id: Int = 0,
 
@@ -28,5 +28,8 @@ data class ProdukTokoEntity(
     val hargaPromo: Int = 0,
 
     @ColumnInfo(name = Column.BARCODE)
-    val barcode: String = ""
+    val barcode: String = "",
+
+    @ColumnInfo(name = Column.IS_DIRTY)
+    val isDirty: Boolean = false,
 )

@@ -1,7 +1,10 @@
 package com.arfdevs.productmonitoring
 
 import android.app.Application
+import com.arfdevs.productmonitoring.di.dispatchersModule
+import com.arfdevs.productmonitoring.di.domainModule
 import com.arfdevs.productmonitoring.di.localModule
+import com.arfdevs.productmonitoring.di.mapperModule
 import com.arfdevs.productmonitoring.di.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -18,7 +21,10 @@ class ProductMonitoringApp: Application() {
 
             modules(
                 networkModule,
-                localModule
+                localModule,
+                dispatchersModule,
+                mapperModule,
+                domainModule
             )
         }
     }

@@ -32,7 +32,11 @@ object Constants {
         const val STATUS = "status"
         const val USERNAME = "username"
         const val CREATED_AT = "created_at"
+
+        const val IS_DIRTY = "is_dirty"
     }
+
+    const val HADIR = "hadir"
 
 }
 

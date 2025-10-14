@@ -49,14 +49,17 @@ interface Dao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateProdukToko(produkToko: ProdukTokoEntity)
 
-    @Query("UPDATE ${Local.PRODUK_TOKO} SET harga_promo = :hargaPromo WHERE id_toko = :idToko AND id_produk = :idProduk")
-    suspend fun updateProdukTokoById(idToko: Int, idProduk: Int, hargaPromo: Int)
+    @Query("UPDATE ${Local.PRODUK_TOKO} SET harga_promo = :hargaPromo, is_dirty = :isDirty WHERE id_toko = :idToko AND id_produk = :idProduk")
+    suspend fun updateProdukTokoById(idToko: Int, idProduk: Int, hargaPromo: Int, isDirty: Boolean = false)
 
-    @Delete
-    suspend fun deleteProdukToko(produkToko: ProdukTokoEntity)
+    @Query("DELETE FROM ${Local.PRODUK_TOKO} WHERE id_toko = :idToko AND id_produk = :idProduk")
+    suspend fun deleteProdukToko(idToko: Int, idProduk: Int)
 
     @Query("SELECT * FROM ${Local.PRODUK_TOKO}")
     fun getAllProdukToko(): List<ProdukTokoEntity>
+
+    @Query("SELECT * FROM ${Local.PRODUK_TOKO} WHERE ${Column.ID_TOKO} = :idToko")
+    fun getAllProdukTokoById(idToko: Int): List<ProdukTokoEntity>
 
     // Attendance table
     @Insert(onConflict = OnConflictStrategy.REPLACE)

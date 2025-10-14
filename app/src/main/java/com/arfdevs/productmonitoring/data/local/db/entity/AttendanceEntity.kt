@@ -16,7 +16,7 @@ data class AttendanceEntity(
     val status: String = "",
 
     @ColumnInfo(name = Column.USERNAME)
-    val barcode: String = "",
+    val username: String = "",
 
     @ColumnInfo(name = Column.CREATED_AT)
     val createdAt: Long = System.currentTimeMillis()

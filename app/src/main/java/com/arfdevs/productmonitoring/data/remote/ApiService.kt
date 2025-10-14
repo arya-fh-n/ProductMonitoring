@@ -6,12 +6,14 @@ import com.arfdevs.productmonitoring.data.remote.request.ReportAttendanceRequest
 import com.arfdevs.productmonitoring.data.remote.request.ReportProductRequest
 import com.arfdevs.productmonitoring.data.remote.request.ReportPromoRequest
 import com.arfdevs.productmonitoring.data.remote.response.ListProdukResponse
+import com.arfdevs.productmonitoring.data.remote.response.ListProdukTokoResponse
 import com.arfdevs.productmonitoring.data.remote.response.ListTokoResponse
 import com.arfdevs.productmonitoring.data.remote.response.LoginResponse
 import com.arfdevs.productmonitoring.helper.NetworkResultWrapper
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiService {
     @POST("login")
@@ -37,4 +39,10 @@ interface ApiService {
 
     @GET("stores")
     suspend fun getStores(): NetworkResultWrapper<ListTokoResponse>
+
+    @GET("report/products")
+    suspend fun getStoreProducts(
+        @Query("store_id") storeId: Int
+    ): NetworkResultWrapper<ListProdukTokoResponse>
+
 }

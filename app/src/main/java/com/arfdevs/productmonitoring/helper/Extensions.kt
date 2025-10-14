@@ -38,3 +38,5 @@ private fun <Input, Output> mapExceptions(
         else -> DomainResult.NetworkError
     }
 }
+
+fun Int?.orZero() = this ?: 0
