@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/loginFragment">
+
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.arfdevs.productmonitoring.presentation.view.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_attendanceFragment"
+            app:destination="@id/attendanceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/attendanceFragment"
+        android:name="com.arfdevs.productmonitoring.presentation.view.ui.attendance.AttendanceFragment"
+        android:label="fragment_attendance"
+        tools:layout="@layout/fragment_attendance" />
+</navigation>

@@ -1,5 +1,7 @@
 package com.arfdevs.productmonitoring.helper
 
+import android.view.View
+import androidx.core.view.isVisible
 import com.google.gson.JsonSyntaxException
 import javax.net.ssl.SSLPeerUnverifiedException
 
@@ -40,3 +42,11 @@ private fun <Input, Output> mapExceptions(
 }
 
 fun Int?.orZero() = this ?: 0
+
+fun View.enabled(state: Boolean) {
+    this.isEnabled = state
+}
+
+fun View.visible(state: Boolean) {
+    this.isVisible = state
+}

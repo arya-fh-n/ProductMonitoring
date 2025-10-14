@@ -38,6 +38,8 @@ object Constants {
 
     const val HADIR = "hadir"
 
+    const val PASSWORD_MAX_LENGTH = 12
+
 }
 
 typealias Local = Constants.DB

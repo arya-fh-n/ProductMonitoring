@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">ProductMonitoring</string>
+
+    <string name="login_success">Login successful</string>
+    <string name="fetch_products">Fetch Products</string>
+    <string name="tv_sign_in">Sign In</string>
+    <string name="ti_username_hint">Username</string>
+    <string name="ti_password_hint">Password</string>
+    <string name="btn_login">Sign In</string>
+    <string name="err_username_empty">Username cannot be empty</string>
+    <string name="err_username_invalid">Username is invalid</string>
+    <string name="err_password_empty">Password cannot be empty</string>
+    <string name="err_password_invalid">Password is invalid</string>
+    <string name="error_title">Error Title</string>
+    <string name="error_description">Error Description</string>
+    <string name="error_btn">Error Button</string>
 </resources>
