@@ -1,7 +1,7 @@
 package com.arfdevs.productmonitoring.di
 
 import com.arfdevs.productmonitoring.BuildConfig
-import com.arfdevs.productmonitoring.data.local.TokenManager
+import com.arfdevs.productmonitoring.data.local.SessionManager
 import com.arfdevs.productmonitoring.data.remote.ApiService
 import com.arfdevs.productmonitoring.data.remote.AuthInterceptor
 import com.arfdevs.productmonitoring.data.remote.NetworkResponseAdapterFactory
@@ -29,11 +29,11 @@ val networkModule = module {
 
     //okhttp
     single {
-        val tokenManager: TokenManager = get()
+        val sessionManager: SessionManager = get()
 
         val authInterceptor = AuthInterceptor {
             runBlocking {
-                tokenManager.token.firstOrNull()
+                sessionManager.token.firstOrNull()
             }
         }
 
