@@ -4,6 +4,8 @@ import android.view.View
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.google.gson.JsonSyntaxException
+import java.text.NumberFormat
+import java.util.Locale
 import javax.net.ssl.SSLPeerUnverifiedException
 
 suspend fun <Input, Output> processResponse(
@@ -54,4 +56,11 @@ fun View.visible(state: Boolean) {
 
 fun View.goneIf(state: Boolean) {
     this.isGone = state
+}
+
+fun Long.toRupiahFormat(): String {
+    val localeID = Locale("in", "ID")
+    val format = NumberFormat.getCurrencyInstance(localeID)
+    format.maximumFractionDigits = 0
+    return format.format(this)
 }

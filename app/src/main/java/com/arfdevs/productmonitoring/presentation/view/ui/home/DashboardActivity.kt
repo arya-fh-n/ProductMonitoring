@@ -1,5 +1,8 @@
 package com.arfdevs.productmonitoring.presentation.view.ui.home
 
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -23,6 +26,29 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>(
 
     private lateinit var navController: NavController
 
+    private var backPressedTime: Long = 0
+    private lateinit var toast: Toast
+
+    private val backPressCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            val currentTime = System.currentTimeMillis()
+
+            if (currentTime - backPressedTime < 2000) {
+                toast.cancel()
+                finishAffinity()
+            } else {
+                backPressedTime = currentTime
+                toast = Toast.makeText(
+                    this@DashboardActivity,
+                    getString(R.string.toast_tap_back_twice),
+                    Toast.LENGTH_SHORT
+                )
+                toast.show()
+            }
+        }
+
+    }
+
     override fun setupView() {
         binding.toolbarDashboard.title = getString(R.string.toolbar_dashboard_title)
         val navHostFragment =
@@ -32,6 +58,8 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>(
 
         reportVM.getLatestAttendance()
         initObserver()
+
+        onBackPressedDispatcher.addCallback(this, backPressCallback)
     }
 
     private fun initObserver() {
@@ -46,8 +74,12 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>(
                     val storeMenu = bottomNav.menu.findItem(R.id.nav_store)
                     val productMenu = bottomNav.menu.findItem(R.id.nav_products)
 
+                    val toolbar = binding.toolbarDashboard
+                    val reportMenu = toolbar.menu.findItem(R.id.menu_report)
+
                     storeMenu.isVisible = state.data
                     productMenu.isVisible = state.data
+                    reportMenu.isVisible = state.data
                 }
 
                 else -> {}

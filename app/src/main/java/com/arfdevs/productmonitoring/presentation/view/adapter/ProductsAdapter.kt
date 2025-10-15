@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.arfdevs.productmonitoring.R
 import com.arfdevs.productmonitoring.databinding.ItemProductBinding
 import com.arfdevs.productmonitoring.domain.model.ProdukModel
+import com.arfdevs.productmonitoring.helper.toRupiahFormat
 
 class ProductsAdapter : ListAdapter<ProdukModel, ProductsAdapter.ProdukViewHolder>(DIFF_CALLBACK) {
 
@@ -16,8 +16,7 @@ class ProductsAdapter : ListAdapter<ProdukModel, ProductsAdapter.ProdukViewHolde
 
         fun bind(item: ProdukModel) {
             binding.tvProductName.text = item.namaProduk
-            binding.tvProductPrice.text =
-                binding.root.context?.getString(R.string.tv_product_price_format, item.harga)
+            binding.tvProductPrice.text = item.harga.toLong().toRupiahFormat()
             binding.tvProductBarcode.text = item.barcode
         }
 

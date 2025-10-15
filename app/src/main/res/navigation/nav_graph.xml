@@ -31,6 +31,7 @@
             android:id="@+id/action_loginFragment_to_dashboardActivity"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true"
+            app:launchSingleTop="true"
             app:destination="@id/dashboardActivity" />
     </fragment>
     <activity

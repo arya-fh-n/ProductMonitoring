@@ -52,6 +52,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(
                 is UiState.Success -> {
                     showLoginStatus(getString(R.string.login_success)) {
                         findNavController().navigate(R.id.action_loginFragment_to_dashboardActivity)
+                        requireActivity().finish()
                     }
                 }
 

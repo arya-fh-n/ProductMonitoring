@@ -62,7 +62,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         lifecycleScope.launch {
             delay(3000L)
             navController.navigate(R.id.action_splashFragment_to_dashboardActivity)
-
+            finish()
         }
     }
 
