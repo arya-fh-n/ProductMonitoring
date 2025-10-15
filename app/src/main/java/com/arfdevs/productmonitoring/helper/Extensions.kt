@@ -1,6 +1,7 @@
 package com.arfdevs.productmonitoring.helper
 
 import android.view.View
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.google.gson.JsonSyntaxException
 import javax.net.ssl.SSLPeerUnverifiedException
@@ -49,4 +50,8 @@ fun View.enabled(state: Boolean) {
 
 fun View.visible(state: Boolean) {
     this.isVisible = state
+}
+
+fun View.goneIf(state: Boolean) {
+    this.isGone = state
 }

@@ -18,7 +18,7 @@ class ProdukViewModel(
 ) : ViewModel() {
 
     private val _listProduk = MutableLiveData<UiState<List<ProdukModel>>>()
-    val listToko: LiveData<UiState<List<ProdukModel>>> = _listProduk
+    val listProduk: LiveData<UiState<List<ProdukModel>>> = _listProduk
 
     fun getProduk() = viewModelScope.launch(dispatcher.io) {
         _listProduk.postValue(UiState.Loading)

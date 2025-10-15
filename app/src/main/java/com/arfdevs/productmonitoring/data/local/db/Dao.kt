@@ -65,6 +65,6 @@ interface Dao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAttendance(attendance: AttendanceEntity)
 
-    @Query("SELECT * FROM ${Local.ATTENDANCE} ORDER BY ${Column.CREATED_AT} DESC LIMIT 1")
-    fun getRecentAttendance(): AttendanceEntity
+    @Query("SELECT * FROM ${Local.ATTENDANCE} ORDER BY ${Column.CREATED_AT} DESC LIMIT 3")
+    fun getRecentAttendance(): List<AttendanceEntity>
 }

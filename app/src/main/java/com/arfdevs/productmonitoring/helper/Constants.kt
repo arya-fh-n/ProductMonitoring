@@ -37,9 +37,12 @@ object Constants {
     }
 
     const val HADIR = "hadir"
+    const val ABSEN = "absen"
 
     const val USERNAME_MIN_LENGTH = 4
     const val PASSWORD_MIN_LENGTH = 4
+
+    const val SILENT_NAV_CODE = 900
 
 }
 

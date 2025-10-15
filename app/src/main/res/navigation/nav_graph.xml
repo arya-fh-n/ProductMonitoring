@@ -3,21 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/splashFragment">
 
 
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.arfdevs.productmonitoring.presentation.view.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_dashboardActivity"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/dashboardActivity" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.arfdevs.productmonitoring.presentation.view.ui.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginFragment_to_attendanceFragment"
-            app:destination="@id/attendanceFragment" />
+            android:id="@+id/action_loginFragment_to_dashboardActivity"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/dashboardActivity" />
     </fragment>
-    <fragment
-        android:id="@+id/attendanceFragment"
-        android:name="com.arfdevs.productmonitoring.presentation.view.ui.attendance.AttendanceFragment"
-        android:label="fragment_attendance"
-        tools:layout="@layout/fragment_attendance" />
+    <activity
+        android:id="@+id/dashboardActivity"
+        android:name="com.arfdevs.productmonitoring.presentation.view.ui.home.DashboardActivity"
+        android:label="activity_dashboard"
+        tools:layout="@layout/activity_dashboard" />
+
 </navigation>

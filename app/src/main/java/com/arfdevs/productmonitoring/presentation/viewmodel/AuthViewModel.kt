@@ -41,4 +41,25 @@ class AuthViewModel(
         _session.postValue(uiState)
     }
 
+    fun getCurrentUser() = viewModelScope.launch {
+        _session.postValue(UiState.Loading)
+
+        val uiState = when (val result = repository.getCurrentUser()) {
+            is DomainResult.ErrorState -> UiState.Error(
+                result.message.orEmpty(),
+                result.responseStatusCode.orZero()
+            )
+
+            is DomainResult.Success -> UiState.Success(result.data)
+            else -> {
+                UiState.Error(
+                    "An unexpected error occurred",
+                    401
+                )
+            }
+        }
+
+        _session.postValue(uiState)
+    }
+
 }

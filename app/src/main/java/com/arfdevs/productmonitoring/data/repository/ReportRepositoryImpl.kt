@@ -45,7 +45,12 @@ class ReportRepositoryImpl(
 
     override suspend fun getAttendance(): DomainResult<Boolean> = withContext(dispatcher.io) {
         val localData = dao.getRecentAttendance()
-        return@withContext DomainResult.Success(localData.status.equals(Constants.HADIR, ignoreCase = true))
+        return@withContext if (localData.isEmpty()) {
+            DomainResult.EmptyState("Tidak ada absensi", 401, 401)
+        } else {
+            val attendance = localData.getOrNull(0)
+            DomainResult.Success(attendance?.status.equals(Constants.HADIR, ignoreCase = true))
+        }
     }
 
     override suspend fun reportProduct(
