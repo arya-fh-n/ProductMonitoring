@@ -10,6 +10,7 @@ sealed class UiState<out R> {
     object Loading : UiState<Nothing>()
     object Empty : UiState<Nothing>()
     object ErrorConnection : UiState<Nothing>()
+    object Idle: UiState<Nothing>()
 }
 
 fun <T> UiState<T>.isError(withEmpty: Boolean = true): Boolean =

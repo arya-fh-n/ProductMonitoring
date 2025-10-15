@@ -37,5 +37,15 @@
     <string name="tv_product_page_title">List Produk PandaBiru</string>
     <string name="toolbar_dashboard_title">Product Monitoring</string>
     <string name="toast_tap_back_twice">Tekan back lagi untuk keluar</string>
+    <string name="tv_store_detail_code_title">Kode Toko :</string>
+    <string name="tv_store_detail_alamat_title">Alamat Toko :</string>
+    <string name="tv_open_produk_toko">Produk</string>
+    <string name="tv_open_promo_toko">Promo</string>
+    <string name="tv_store_products_title">List Produk %1s</string>
+    <string name="tv_store_products_bs_title">Laporan Produk</string>
+    <string name="cb_store_products_bs">Tersedia di toko</string>
+    <string name="btn_konfirmasi">Konfirm</string>
+    <string name="toast_remove_product">Produk dihapus dari toko</string>
+    <string name="toast_add_product">Produk ditambah ke toko</string>
 
 </resources>

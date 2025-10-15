@@ -1,15 +1,17 @@
 package com.arfdevs.productmonitoring.presentation.view.ui.home
 
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.content.Intent
 import com.arfdevs.productmonitoring.R
 import com.arfdevs.productmonitoring.databinding.FragmentStoreListBinding
 import com.arfdevs.productmonitoring.domain.model.TokoModel
+import com.arfdevs.productmonitoring.helper.Constants.EXTRA_TOKO
 import com.arfdevs.productmonitoring.helper.UiState
 import com.arfdevs.productmonitoring.helper.goneIf
 import com.arfdevs.productmonitoring.helper.isError
 import com.arfdevs.productmonitoring.helper.visible
 import com.arfdevs.productmonitoring.presentation.view.adapter.StoresAdapter
 import com.arfdevs.productmonitoring.presentation.view.base.BaseFragment
+import com.arfdevs.productmonitoring.presentation.view.ui.storedetail.StoreDetailActivity
 import com.arfdevs.productmonitoring.presentation.viewmodel.TokoViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
@@ -26,11 +28,6 @@ class StoreListFragment : BaseFragment<FragmentStoreListBinding>(
     override fun initView() = with(binding) {
         tvStorePageTitle.text = getString(R.string.tv_store_page_title)
         adapter.setListener(this@StoreListFragment)
-
-        context?.let { ctx ->
-            rvStores.layoutManager = LinearLayoutManager(ctx)
-        }
-
         rvStores.adapter = adapter
 
         tokoVM.getToko()
@@ -69,7 +66,12 @@ class StoreListFragment : BaseFragment<FragmentStoreListBinding>(
     }
 
     override fun onStoreClick(store: TokoModel) {
-        // Navigate to store detail
+        context?.let { ctx ->
+            Intent(ctx, StoreDetailActivity::class.java).also {
+                it.putExtra(EXTRA_TOKO, store)
+                startActivity(it)
+            }
+        }
     }
 
 }

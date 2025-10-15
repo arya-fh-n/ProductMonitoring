@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.view.ui.storedetail.StoreDetailActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tv_store_detail_name"
+            style="@style/TextAppearance.Material3.HeadlineLarge.Emphasized"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="3"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Toko Indojuli" />
+
+        <TextView
+            android:id="@+id/tv_store_detail_code_title"
+            style="@style/TextAppearance.Material3.TitleMedium.Emphasized"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_store_detail_name"
+            tools:text="Kode Toko :" />
+
+        <TextView
+            android:id="@+id/tv_store_detail_code"
+            style="@style/TextAppearance.Material3.BodyLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintEnd_toEndOf="@id/tv_store_detail_code_title"
+            app:layout_constraintStart_toStartOf="@id/tv_store_detail_code_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_store_detail_code_title"
+            tools:text="17000" />
+
+        <TextView
+            android:id="@+id/tv_store_detail_alamat_title"
+            style="@style/TextAppearance.Material3.TitleMedium.Emphasized"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_store_detail_code"
+            tools:text="Alamat Toko: " />
+
+        <TextView
+            android:id="@+id/tv_store_detail_alamat"
+            style="@style/TextAppearance.Material3.BodyLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="6"
+            app:layout_constraintEnd_toEndOf="@id/tv_store_detail_alamat_title"
+            app:layout_constraintStart_toStartOf="@id/tv_store_detail_alamat_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_store_detail_alamat_title"
+            tools:text="Jl. Sudirman Raya No. 11Jl. Sudirman Raya No. 11" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv_produk_toko"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@id/mcv_promo_toko"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_store_detail_alamat"
+            tools:layout_gravity="center">
+
+            <LinearLayout
+                android:id="@+id/ll_produk_toko"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="24dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/iv_produk_toko"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_store_product" />
+
+                <TextView
+                    android:id="@+id/tv_open_produk_toko"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="18sp"
+                    tools:text="Produk" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv_promo_toko"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/mcv_produk_toko"
+            app:layout_constraintTop_toBottomOf="@id/tv_store_detail_alamat"
+            tools:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="24dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/iv_promo_toko"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_promo" />
+
+                <TextView
+                    android:id="@+id/tv_open_promo_toko"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="18sp"
+                    tools:text="Promo" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

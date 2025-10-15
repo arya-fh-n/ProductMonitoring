@@ -146,4 +146,5 @@
     <color name="md_theme_surfaceContainerHighest_highContrast">#C6C6CD</color>
     <color name="loading_greyed">#40000000</color>
     <color name="grey_line">#9595AF</color>
+    <color name="red">#FF3122</color>
 </resources>

@@ -44,6 +44,14 @@ object Constants {
 
     const val SILENT_NAV_CODE = 900
 
+    const val EXTRA_TOKO = "extra_toko"
+    const val EXTRA_ID_TOKO = "extra_id_toko"
+    const val EXTRA_NAMA_TOKO = "extra_nama_toko"
+
+    const val EXTRA_BS_PRODUK = "extra_bs_produk"
+    const val EXTRA_BS_ID_TOKO = "extra_bs_id_toko"
+    const val EXTRA_BS_IS_AVAILABLE = "extra_bs_is_available"
+
 }
 
 typealias Local = Constants.DB

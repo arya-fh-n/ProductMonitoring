@@ -8,13 +8,10 @@
         android:title="@string/menu_report"
         app:showAsAction="ifRoom" />
 
-    <group android:menuCategory="alternative">
+    <item
+        android:id="@+id/menu_sign_out"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/menu_sign_out"
+        app:showAsAction="never" />
 
-        <item
-            android:id="@+id/menu_sign_out"
-            android:icon="@drawable/ic_logout"
-            android:title="@string/menu_sign_out"
-            app:showAsAction="never" />
-
-    </group>
 </menu>

@@ -11,13 +11,19 @@ import com.arfdevs.productmonitoring.helper.toRupiahFormat
 
 class ProductsAdapter : ListAdapter<ProdukModel, ProductsAdapter.ProdukViewHolder>(DIFF_CALLBACK) {
 
-    class ProdukViewHolder(private val binding: ItemProductBinding) :
+    var productsListener: ProductsListener? = null
+
+    inner class ProdukViewHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ProdukModel) {
             binding.tvProductName.text = item.namaProduk
             binding.tvProductPrice.text = item.harga.toLong().toRupiahFormat()
             binding.tvProductBarcode.text = item.barcode
+
+            binding.root.setOnClickListener {
+                productsListener?.onStoreProductClick(item)
+            }
         }
 
     }
@@ -34,6 +40,14 @@ class ProductsAdapter : ListAdapter<ProdukModel, ProductsAdapter.ProdukViewHolde
     override fun onBindViewHolder(holder: ProdukViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+    }
+
+    fun setListener(listener: ProductsListener) {
+        productsListener = listener
+    }
+
+    interface ProductsListener {
+        fun onStoreProductClick(produk: ProdukModel)
     }
 
     companion object {

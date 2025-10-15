@@ -61,6 +61,12 @@ interface Dao {
     @Query("SELECT * FROM ${Local.PRODUK_TOKO} WHERE ${Column.ID_TOKO} = :idToko")
     fun getAllProdukTokoById(idToko: Int): List<ProdukTokoEntity>
 
+    @Query("SELECT * FROM ${Local.PRODUK_TOKO} WHERE is_dirty = 1")
+    fun getAllProdukTokoDirty(): List<ProdukTokoEntity>
+
+    @Query("UPDATE ${Local.PRODUK_TOKO} SET is_dirty = 0")
+    suspend fun setAllProdukTokoClean()
+
     // Attendance table
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAttendance(attendance: AttendanceEntity)

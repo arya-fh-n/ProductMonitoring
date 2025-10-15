@@ -1,6 +1,5 @@
 package com.arfdevs.productmonitoring.presentation.view.ui.home
 
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.arfdevs.productmonitoring.R
 import com.arfdevs.productmonitoring.databinding.FragmentProductListBinding
 import com.arfdevs.productmonitoring.helper.UiState
@@ -24,11 +23,6 @@ class ProductListFragment : BaseFragment<FragmentProductListBinding>(
 
     override fun initView() = with(binding) {
         tvProductPageTitle.text = getString(R.string.tv_product_page_title)
-
-        context?.let { ctx ->
-            rvProducts.layoutManager = LinearLayoutManager(ctx)
-        }
-
         rvProducts.adapter = adapter
 
         produkVM.getProduk()
