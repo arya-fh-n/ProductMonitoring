@@ -38,7 +38,8 @@ object Constants {
 
     const val HADIR = "hadir"
 
-    const val PASSWORD_MAX_LENGTH = 12
+    const val USERNAME_MIN_LENGTH = 4
+    const val PASSWORD_MIN_LENGTH = 4
 
 }
 

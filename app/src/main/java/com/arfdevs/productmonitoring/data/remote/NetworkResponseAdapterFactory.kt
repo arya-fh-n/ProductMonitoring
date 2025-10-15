@@ -1,5 +1,6 @@
 package com.arfdevs.productmonitoring.data.remote
 
+import com.arfdevs.productmonitoring.helper.ApiResponse
 import com.arfdevs.productmonitoring.helper.NetworkResultWrapper
 import retrofit2.Call
 import retrofit2.CallAdapter
@@ -24,6 +25,12 @@ class NetworkResponseAdapterFactory : CallAdapter.Factory() {
         check(responseType is ParameterizedType)
         val successType = getParameterUpperBound(0, responseType)
 
-        return NetworkResponseCallAdapter<Any>(successType)
+        val apiResponseType = object : ParameterizedType {
+            override fun getRawType() = ApiResponse::class.java
+            override fun getOwnerType() = null
+            override fun getActualTypeArguments() = arrayOf(successType)
+        }
+
+        return NetworkResponseCallAdapter<Any>(apiResponseType)
     }
 }

@@ -1,5 +1,7 @@
 package com.arfdevs.productmonitoring.data.remote
 
+import android.util.Log
+import com.arfdevs.productmonitoring.helper.ApiResponse
 import com.arfdevs.productmonitoring.helper.NetworkResultWrapper
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -10,7 +12,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 internal class NetworkResponseCall<T>(
-    private val delegate: Call<T>
+    private val delegate: Call<ApiResponse<T>>
 ) : Call<NetworkResultWrapper<T?>> {
 
     private val gson = Gson()
@@ -31,67 +33,65 @@ internal class NetworkResponseCall<T>(
     override fun timeout(): Timeout = delegate.timeout()
 
     override fun enqueue(callback: Callback<NetworkResultWrapper<T?>>) {
-        delegate.enqueue(object : Callback<T> {
-            override fun onResponse(call: Call<T>, response: Response<T>) {
+        delegate.enqueue(object : Callback<ApiResponse<T>> {
+            override fun onResponse(
+                call: Call<ApiResponse<T>>,
+                response: Response<ApiResponse<T>>
+            ) {
                 val headers = response.headers().toMultimap()
                 val code = response.code()
+                val apiResponse = response.body()
 
-                try {
-                    if (response.isSuccessful && response.body() != null) {
-                        // Try to cast body as ApiResponse if that’s your backend wrapper
-                        val apiResponseJson = gson.toJsonTree(response.body()).asJsonObject
+                Log.d("ARYUL", "onResponse: ${response.body()}")
+                Log.d("ARYUL", "onResponse Success: ${response.isSuccessful}")
+                Log.d("ARYUL", "Raw response body: $apiResponse")
+                Log.d("ARYUL", "Status: ${apiResponse?.status.orEmpty()}")
+                Log.d("ARYUL", "Message: ${apiResponse?.message.orEmpty()}")
+                Log.d("ARYUL", "Data: ${apiResponse?.data}")
 
-                        val status = apiResponseJson["status"]?.asString ?: "Success"
-                        val message = apiResponseJson["message"]?.asString ?: ""
-                        val data = gson.fromJson(apiResponseJson["data"], Any::class.java)
-
-                        @Suppress("UNCHECKED_CAST")
-                        callback.onResponse(
-                            this@NetworkResponseCall,
-                            Response.success(
-                                NetworkResultWrapper.Success(
-                                    status = status,
-                                    code = code,
-                                    message = message,
-                                    data = data as T,
-                                    headers = headers
-                                )
-                            )
-                        )
-                    } else {
-                        val errorBody = response.errorBody()?.string()
-                        val errorJson = try {
-                            gson.fromJson(errorBody, JsonObject::class.java)
-                        } catch (e: Exception) {
-                            JsonObject()
-                        }
-
-                        val status = errorJson["status"]?.asString ?: "Error"
-                        val message = errorJson["message"]?.asString ?: "Unknown error"
-                        val error = errorJson["error"]?.asString ?: errorBody.orEmpty()
-
-                        callback.onResponse(
-                            this@NetworkResponseCall,
-                            Response.success(
-                                NetworkResultWrapper.Error(
-                                    status = status,
-                                    code = code,
-                                    message = message,
-                                    error = error,
-                                    headers = headers
-                                )
-                            )
-                        )
-                    }
-                } catch (e: Exception) {
+                if (response.isSuccessful && response.body() != null) {
                     callback.onResponse(
                         this@NetworkResponseCall,
-                        Response.success(NetworkResultWrapper.Exception(e))
+                        Response.success(
+                            NetworkResultWrapper.Success(
+                                status = apiResponse?.status.orEmpty(),
+                                code = code,
+                                message = apiResponse?.message.orEmpty(),
+                                data = apiResponse?.data,
+                                headers = headers
+                            )
+                        )
+                    )
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    val errorJson = try {
+                        gson.fromJson(errorBody, JsonObject::class.java)
+                    } catch (e: Exception) {
+                        JsonObject()
+                    }
+
+                    val status = errorJson["status"]?.asString ?: "Error"
+                    val message = errorJson["message"]?.asString ?: "Unknown error"
+                    val error = errorJson["error"]?.asString ?: errorBody.orEmpty()
+
+                    callback.onResponse(
+                        this@NetworkResponseCall,
+                        Response.success(
+                            NetworkResultWrapper.Error(
+                                status = status,
+                                code = code,
+                                message = message,
+                                error = error,
+                                headers = headers
+                            )
+                        )
                     )
                 }
             }
 
-            override fun onFailure(call: Call<T>, t: Throwable) {
+
+            override fun onFailure(call: Call<ApiResponse<T>>, t: Throwable) {
+                Log.d("ARYA", "onFailure: Failure: $t")
                 callback.onResponse(
                     this@NetworkResponseCall,
                     Response.success(NetworkResultWrapper.Exception(t))
