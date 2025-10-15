@@ -10,7 +10,7 @@ import com.arfdevs.productmonitoring.domain.model.TokoModel
 
 class StoresAdapter : ListAdapter<TokoModel, StoresAdapter.StoreViewHolder>(DIFF_CALLBACK) {
 
-    var listener: StoreListener? = null
+    var storeListener: StoreListener? = null
 
     inner class StoreViewHolder(private val binding: ItemStoreBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -20,7 +20,7 @@ class StoresAdapter : ListAdapter<TokoModel, StoresAdapter.StoreViewHolder>(DIFF
             binding.tvStoreAddress.text = item.alamat
 
             binding.root.setOnClickListener {
-                listener?.onStoreClick(item)
+                storeListener?.onStoreClick(item)
             }
         }
 
@@ -42,7 +42,7 @@ class StoresAdapter : ListAdapter<TokoModel, StoresAdapter.StoreViewHolder>(DIFF
     }
 
     fun setListener(listener: StoreListener) {
-        this.listener = listener
+        storeListener = listener
     }
 
     interface StoreListener {
