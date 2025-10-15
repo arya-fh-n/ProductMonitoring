@@ -42,13 +42,6 @@ internal class NetworkResponseCall<T>(
                 val code = response.code()
                 val apiResponse = response.body()
 
-                Log.d("ARYUL", "onResponse: ${response.body()}")
-                Log.d("ARYUL", "onResponse Success: ${response.isSuccessful}")
-                Log.d("ARYUL", "Raw response body: $apiResponse")
-                Log.d("ARYUL", "Status: ${apiResponse?.status.orEmpty()}")
-                Log.d("ARYUL", "Message: ${apiResponse?.message.orEmpty()}")
-                Log.d("ARYUL", "Data: ${apiResponse?.data}")
-
                 if (response.isSuccessful && response.body() != null) {
                     callback.onResponse(
                         this@NetworkResponseCall,

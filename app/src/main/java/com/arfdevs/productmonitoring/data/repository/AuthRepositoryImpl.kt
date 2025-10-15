@@ -1,6 +1,5 @@
 package com.arfdevs.productmonitoring.data.repository
 
-import android.util.Log
 import com.arfdevs.productmonitoring.data.local.SessionManager
 import com.arfdevs.productmonitoring.data.remote.ApiService
 import com.arfdevs.productmonitoring.data.remote.request.LoginRequest
@@ -31,7 +30,6 @@ class AuthRepositoryImpl(
         )
 
         return@withContext processResponse(result) { response ->
-            Log.d("ARYUL", "login: $response")
             sessionManager.startNewSession(response)
 
             val loggedInUsername = response.user?.username.orEmpty()

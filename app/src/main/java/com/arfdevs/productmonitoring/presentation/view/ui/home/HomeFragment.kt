@@ -6,6 +6,8 @@ import com.arfdevs.productmonitoring.databinding.FragmentHomeBinding
 import com.arfdevs.productmonitoring.helper.Constants
 import com.arfdevs.productmonitoring.helper.UiState
 import com.arfdevs.productmonitoring.helper.enabled
+import com.arfdevs.productmonitoring.helper.goneIf
+import com.arfdevs.productmonitoring.helper.isError
 import com.arfdevs.productmonitoring.presentation.view.base.BaseFragment
 import com.arfdevs.productmonitoring.presentation.viewmodel.ReportViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -29,6 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     private fun initObserver() {
         reportVM.attendance.observe(viewLifecycleOwner) { state ->
+            hideContent(state.isError(false))
             when (state) {
                 is UiState.Success -> {
                     updateAttendanceStatusUI(state.data)
@@ -63,6 +66,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
         ivAttendanceStatus.load(R.drawable.ic_attendance_pending)
         tvAttendanceStatus.text = getString(R.string.attendance_status_not)
+    }
+
+    private fun hideContent(isError: Boolean) = with(binding) {
+        tvTitleWelcome.goneIf(isError)
+        tvAttendanceTitle.goneIf(isError)
+        ivAttendanceStatus.goneIf(isError)
+        tvAttendanceStatus.goneIf(isError)
+        btnSetPresent.goneIf(isError)
+        btnSetAbsent.goneIf(isError)
     }
 
     private fun initListener() {

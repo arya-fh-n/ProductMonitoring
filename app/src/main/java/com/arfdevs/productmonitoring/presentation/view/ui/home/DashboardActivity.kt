@@ -24,6 +24,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>(
     private lateinit var navController: NavController
 
     override fun setupView() {
+        binding.toolbarDashboard.title = getString(R.string.toolbar_dashboard_title)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fcv_dashboard) as NavHostFragment
         navController = navHostFragment.navController
@@ -36,10 +37,19 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>(
     private fun initObserver() {
         reportVM.attendance.observe(this) { state ->
             showLoading(state is UiState.Loading)
-            binding.fcvDashboard.visible(state is UiState.Success)
             when (state) {
                 is UiState.Error -> showError(state.message)
                 UiState.ErrorConnection -> showError("Error koneksi internet")
+                is UiState.Success -> {
+                    val bottomNav = binding.bottomNavigation
+
+                    val storeMenu = bottomNav.menu.findItem(R.id.nav_store)
+                    val productMenu = bottomNav.menu.findItem(R.id.nav_products)
+
+                    storeMenu.isVisible = state.data
+                    productMenu.isVisible = state.data
+                }
+
                 else -> {}
             }
         }

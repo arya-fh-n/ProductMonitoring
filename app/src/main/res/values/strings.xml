@@ -33,8 +33,9 @@
 
     <string name="btn_set_present">Masuk kerja</string>
     <string name="btn_set_absent">Absen kerja</string>
-    <string name="tv_product_price_format">Rp%1$i</string>
+    <string name="tv_product_price_format">Rp%1$d</string>
     <string name="tv_store_page_title">List Toko Klien PandaBiru</string>
     <string name="tv_product_page_title">List Produk PandaBiru</string>
+    <string name="toolbar_dashboard_title">Product Monitoring</string>
 
 </resources>
