@@ -4,7 +4,7 @@ import android.content.Intent
 import com.arfdevs.productmonitoring.R
 import com.arfdevs.productmonitoring.databinding.FragmentStoreListBinding
 import com.arfdevs.productmonitoring.domain.model.TokoModel
-import com.arfdevs.productmonitoring.helper.Constants.EXTRA_TOKO
+import com.arfdevs.productmonitoring.helper.Constants
 import com.arfdevs.productmonitoring.helper.UiState
 import com.arfdevs.productmonitoring.helper.goneIf
 import com.arfdevs.productmonitoring.helper.isError
@@ -68,7 +68,7 @@ class StoreListFragment : BaseFragment<FragmentStoreListBinding>(
     override fun onStoreClick(store: TokoModel) {
         context?.let { ctx ->
             Intent(ctx, StoreDetailActivity::class.java).also {
-                it.putExtra(EXTRA_TOKO, store)
+                it.putExtra(Constants.DATA_TOKO, store)
                 startActivity(it)
             }
         }

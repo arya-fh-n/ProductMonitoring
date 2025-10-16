@@ -36,6 +36,24 @@ object Constants {
         const val IS_DIRTY = "is_dirty"
     }
 
+    const val DATA_TOKO = "extra_data_toko"
+
+    object ProdukToko {
+        const val ID_TOKO = "extra_produk_toko_id_toko"
+        const val NAMA_TOKO = "extra_produk_toko_nama_toko"
+    }
+
+    object Promo {
+        const val ID_TOKO = "extra_promo_id_toko"
+        const val NAMA_TOKO = "extra_promo_nama_toko"
+    }
+
+    object BottomSheet {
+        const val BS_PRODUK = "extra_bs_produk"
+        const val BS_ID_TOKO = "extra_bs_id_toko"
+        const val BS_IS_AVAILABLE = "extra_bs_is_available"
+    }
+
     const val HADIR = "hadir"
     const val ABSEN = "absen"
 
@@ -43,16 +61,10 @@ object Constants {
     const val PASSWORD_MIN_LENGTH = 4
 
     const val SILENT_NAV_CODE = 900
-
-    const val EXTRA_TOKO = "extra_toko"
-    const val EXTRA_ID_TOKO = "extra_id_toko"
-    const val EXTRA_NAMA_TOKO = "extra_nama_toko"
-
-    const val EXTRA_BS_PRODUK = "extra_bs_produk"
-    const val EXTRA_BS_ID_TOKO = "extra_bs_id_toko"
-    const val EXTRA_BS_IS_AVAILABLE = "extra_bs_is_available"
-
 }
 
 typealias Local = Constants.DB
 typealias Column = Constants.Column
+typealias ProdukToko = Constants.ProdukToko
+typealias Promo = Constants.Promo
+typealias BS = Constants.BottomSheet

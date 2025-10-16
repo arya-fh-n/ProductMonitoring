@@ -9,7 +9,7 @@ import androidx.core.os.BundleCompat
 import com.arfdevs.productmonitoring.R
 import com.arfdevs.productmonitoring.databinding.BottomSheetProductReportBinding
 import com.arfdevs.productmonitoring.domain.model.ProdukModel
-import com.arfdevs.productmonitoring.helper.Constants
+import com.arfdevs.productmonitoring.helper.BS
 import com.arfdevs.productmonitoring.helper.UiState
 import com.arfdevs.productmonitoring.helper.enabled
 import com.arfdevs.productmonitoring.helper.orZero
@@ -44,10 +44,10 @@ class ProductReportBottomSheet : BottomSheetDialogFragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             produk =
-                BundleCompat.getParcelable(it, Constants.EXTRA_BS_PRODUK, ProdukModel::class.java)
+                BundleCompat.getParcelable(it, BS.BS_PRODUK, ProdukModel::class.java)
                     ?: ProdukModel()
-            idToko = it.getInt(Constants.EXTRA_BS_ID_TOKO)
-            isCurrentlyAvailable = it.getBoolean(Constants.EXTRA_BS_IS_AVAILABLE)
+            idToko = it.getInt(BS.BS_ID_TOKO)
+            isCurrentlyAvailable = it.getBoolean(BS.BS_IS_AVAILABLE)
             isNewAvailability = isCurrentlyAvailable
         }
     }
@@ -140,9 +140,9 @@ class ProductReportBottomSheet : BottomSheetDialogFragment() {
             isAvailable: Boolean
         ) = ProductReportBottomSheet().apply {
             arguments = Bundle().apply {
-                putParcelable(Constants.EXTRA_BS_PRODUK, produk)
-                putInt(Constants.EXTRA_BS_ID_TOKO, idToko)
-                putBoolean(Constants.EXTRA_BS_IS_AVAILABLE, isAvailable)
+                putParcelable(BS.BS_PRODUK, produk)
+                putInt(BS.BS_ID_TOKO, idToko)
+                putBoolean(BS.BS_IS_AVAILABLE, isAvailable)
             }
         }
     }

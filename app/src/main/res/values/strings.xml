@@ -47,5 +47,9 @@
     <string name="btn_konfirmasi">Konfirm</string>
     <string name="toast_remove_product">Produk dihapus dari toko</string>
     <string name="toast_add_product">Produk ditambah ke toko</string>
+    <string name="dialog_logout_title">Logout</string>
+    <string name="dialog_logout_message">Apa anda yakin ingin logout?</string>
+    <string name="dialog_yes">Ya</string>
+    <string name="dialog_no">Tidak</string>
 
 </resources>

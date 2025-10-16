@@ -7,5 +7,6 @@ interface AuthRepository {
 
     suspend fun login(username: String, password: String): DomainResult<LoginModel>
     suspend fun getCurrentUser(): DomainResult<LoginModel>
+    suspend fun logout()
 
 }

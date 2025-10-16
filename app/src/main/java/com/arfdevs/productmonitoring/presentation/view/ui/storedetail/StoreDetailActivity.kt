@@ -7,6 +7,8 @@ import com.arfdevs.productmonitoring.R
 import com.arfdevs.productmonitoring.databinding.ActivityStoreDetailBinding
 import com.arfdevs.productmonitoring.domain.model.TokoModel
 import com.arfdevs.productmonitoring.helper.Constants
+import com.arfdevs.productmonitoring.helper.ProdukToko
+import com.arfdevs.productmonitoring.helper.Promo
 import com.arfdevs.productmonitoring.presentation.view.base.BaseActivity
 
 class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(
@@ -14,7 +16,7 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(
 ) {
 
     private val dataToko: TokoModel by lazy {
-        IntentCompat.getParcelableExtra(intent, Constants.EXTRA_TOKO, TokoModel::class.java)
+        IntentCompat.getParcelableExtra(intent, Constants.DATA_TOKO, TokoModel::class.java)
             ?: TokoModel()
     }
 
@@ -45,8 +47,8 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(
                 Intent(
                     this,
                     StoreProductsActivity::class.java
-                ).putExtra(Constants.EXTRA_ID_TOKO, dataToko.id)
-                    .putExtra(Constants.EXTRA_NAMA_TOKO, dataToko.namaToko)
+                ).putExtra(ProdukToko.ID_TOKO, dataToko.id)
+                    .putExtra(ProdukToko.NAMA_TOKO, dataToko.namaToko)
             )
         }
 
@@ -55,7 +57,8 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(
                 Intent(
                     this,
                     StorePromoActivity::class.java
-                ).putExtra(Constants.EXTRA_ID_TOKO, dataToko.id)
+                ).putExtra(Promo.ID_TOKO, dataToko.id)
+                    .putExtra(Promo.NAMA_TOKO, dataToko.namaToko)
             )
         }
     }

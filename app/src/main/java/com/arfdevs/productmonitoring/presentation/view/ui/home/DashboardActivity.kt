@@ -1,8 +1,10 @@
 package com.arfdevs.productmonitoring.presentation.view.ui.home
 
-import android.view.MenuItem
+import android.app.AlertDialog
+import android.content.Intent
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -11,15 +13,18 @@ import com.arfdevs.productmonitoring.databinding.ActivityDashboardBinding
 import com.arfdevs.productmonitoring.helper.UiState
 import com.arfdevs.productmonitoring.helper.visible
 import com.arfdevs.productmonitoring.presentation.view.base.BaseActivity
+import com.arfdevs.productmonitoring.presentation.view.ui.MainActivity
+import com.arfdevs.productmonitoring.presentation.viewmodel.AuthViewModel
 import com.arfdevs.productmonitoring.presentation.viewmodel.ProdukViewModel
 import com.arfdevs.productmonitoring.presentation.viewmodel.ReportViewModel
 import com.arfdevs.productmonitoring.presentation.viewmodel.TokoViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DashboardActivity : BaseActivity<ActivityDashboardBinding>(
     ActivityDashboardBinding::inflate
 ) {
-
+    private val authVM: AuthViewModel by viewModel()
     private val reportVM: ReportViewModel by viewModel()
     private val produkVM: ProdukViewModel by viewModel()
     private val tokoVM: TokoViewModel by viewModel()
@@ -59,7 +64,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>(
         reportVM.getLatestAttendance()
         initObserver()
 
-        onBackPressedDispatcher.addCallback(this, backPressCallback)
+        initListener()
     }
 
     private fun initObserver() {
@@ -74,12 +79,8 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>(
                     val storeMenu = bottomNav.menu.findItem(R.id.nav_store)
                     val productMenu = bottomNav.menu.findItem(R.id.nav_products)
 
-                    val toolbar = binding.toolbarDashboard
-                    val reportMenu = toolbar.menu.findItem(R.id.menu_report)
-
                     storeMenu.isVisible = state.data
                     productMenu.isVisible = state.data
-                    reportMenu.isVisible = state.data
                 }
 
                 else -> {}
@@ -93,6 +94,46 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>(
         produkVM.listProduk.observe(this) { state ->
             showLoading(state is UiState.Loading)
         }
+
+        authVM.logoutState.observe(this) {
+            if (it is UiState.Success) {
+                startActivity(
+                    Intent(
+                        this,
+                        MainActivity::class.java
+                    )
+                )
+                finishAffinity()
+            }
+        }
+    }
+
+    private fun initListener() {
+        onBackPressedDispatcher.addCallback(this, backPressCallback)
+        binding.toolbarDashboard.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.menu_sign_out -> {
+                    logOut()
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
+
+    private fun logOut() {
+        MaterialAlertDialogBuilder(this)
+            .setMessage(getString(R.string.dialog_logout_message))
+            .setNegativeButton(getString(R.string.dialog_no)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setPositiveButton(getString(R.string.dialog_yes)) { _, _ ->
+                authVM.logOut()
+            }
+            .show()
+            .getButton(AlertDialog.BUTTON_POSITIVE)
+            ?.setTextColor(ContextCompat.getColor(this, R.color.red))
     }
 
     private fun showLoading(isLoading: Boolean) = with(binding) {

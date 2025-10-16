@@ -65,4 +65,8 @@ class AuthRepositoryImpl(
         }
     }
 
+    override suspend fun logout() = withContext(dispatcher.io) {
+        sessionManager.clearToken()
+    }
+
 }

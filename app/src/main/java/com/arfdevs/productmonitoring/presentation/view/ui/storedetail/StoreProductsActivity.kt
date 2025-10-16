@@ -3,7 +3,7 @@ package com.arfdevs.productmonitoring.presentation.view.ui.storedetail
 import com.arfdevs.productmonitoring.R
 import com.arfdevs.productmonitoring.databinding.ActivityStoreProductsBinding
 import com.arfdevs.productmonitoring.domain.model.ProdukModel
-import com.arfdevs.productmonitoring.helper.Constants
+import com.arfdevs.productmonitoring.helper.ProdukToko
 import com.arfdevs.productmonitoring.helper.UiState
 import com.arfdevs.productmonitoring.presentation.view.adapter.ProductsAdapter
 import com.arfdevs.productmonitoring.presentation.view.base.BaseActivity
@@ -27,11 +27,11 @@ class StoreProductsActivity : BaseActivity<ActivityStoreProductsBinding>(
     }
 
     private val idToko: Int by lazy {
-        intent.getIntExtra(Constants.EXTRA_ID_TOKO, 0)
+        intent.getIntExtra(ProdukToko.ID_TOKO, 0)
     }
 
     private val namaToko: String by lazy {
-        intent.getStringExtra(Constants.EXTRA_NAMA_TOKO) ?: ""
+        intent.getStringExtra(ProdukToko.NAMA_TOKO) ?: ""
     }
 
     override fun setupView() = with(binding) {

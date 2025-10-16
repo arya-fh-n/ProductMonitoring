@@ -20,6 +20,9 @@ class AuthViewModel(
     private val _session = MutableLiveData<UiState<LoginModel>>()
     val session: LiveData<UiState<LoginModel>> = _session
 
+    private val _logoutState = MutableLiveData<UiState<Boolean>>(UiState.Idle)
+    val logoutState: LiveData<UiState<Boolean>> get() = _logoutState
+
     fun login(
         username: String,
         password: String
@@ -60,6 +63,11 @@ class AuthViewModel(
         }
 
         _session.postValue(uiState)
+    }
+
+    fun logOut() = viewModelScope.launch(dispatcher.io) {
+        repository.logout()
+        _logoutState.postValue(UiState.Success(true))
     }
 
 }
