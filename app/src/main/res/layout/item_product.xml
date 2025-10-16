@@ -42,6 +42,24 @@
             tools:text="Rp10.000" />
 
         <TextView
+            android:id="@+id/tv_product_promo"
+            style="@style/TextAppearance.Material3.BodyMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/tv_product_barcode"
+            app:layout_constraintStart_toStartOf="@id/tv_product_price"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_price"
+            tools:text="Rp7.000"
+            tools:visibility="visible" />
+
+        <TextView
             android:id="@+id/tv_product_barcode"
             style="@style/TextAppearance.Material3.TitleSmall"
             android:layout_width="wrap_content"

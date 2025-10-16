@@ -12,14 +12,15 @@ class StoresAdapter : ListAdapter<TokoModel, StoresAdapter.StoreViewHolder>(DIFF
 
     var storeListener: StoreListener? = null
 
-    inner class StoreViewHolder(private val binding: ItemStoreBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class StoreViewHolder(private val binding: ItemStoreBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: TokoModel) {
-            binding.tvStoreName.text = item.namaToko
-            binding.tvStoreCode.text = item.kodeToko
-            binding.tvStoreAddress.text = item.alamat
+        fun bind(item: TokoModel) = with(binding) {
+            tvStoreName.text = item.namaToko
+            tvStoreCode.text = item.kodeToko
+            tvStoreAddress.text = item.alamat
 
-            binding.root.setOnClickListener {
+            root.setOnClickListener {
                 storeListener?.onStoreClick(item)
             }
         }

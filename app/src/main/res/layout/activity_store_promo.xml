@@ -7,4 +7,29 @@
     android:layout_height="match_parent"
     tools:context=".presentation.view.ui.storedetail.StorePromoActivity">
 
+    <TextView
+        android:id="@+id/tv_store_promo_title"
+        style="@style/TextAppearance.Material3.HeadlineSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="List Promo Toko Indojuli" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_store_promo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_store_promo_title"
+        tools:listitem="@layout/item_product" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

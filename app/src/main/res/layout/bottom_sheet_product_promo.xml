@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tv_bs_promo_title"
+        style="@style/TextAppearance.Material3.TitleMedium.Emphasized"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:textSize="20sp"
+        tools:text="Laporan Promo" />
+
+    <TextView
+        android:id="@+id/tv_bs_promo_product_name"
+        style="@style/TextAppearance.Material3.BodyMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:textSize="16sp"
+        tools:text="Sampo Anti Ketombe Jumbo" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ti_promo_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:hint="@string/tv_promo_price_hint">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_promo_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            tools:text="12000" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_promo_remove_hint"
+        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12sp"
+        tools:text="@string/tv_promo_remove_hint" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_bs_confirm_promo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:enabled="true"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textSize="16sp"
+        tools:text="@string/btn_konfirmasi" />
+
+</LinearLayout>

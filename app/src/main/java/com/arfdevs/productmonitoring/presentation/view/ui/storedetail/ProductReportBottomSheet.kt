@@ -56,7 +56,7 @@ class ProductReportBottomSheet : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            tvBsProductTitle.text = getString(R.string.tv_store_products_title)
+            tvBsProductTitle.text = getString(R.string.tv_store_products_bs_title)
             tvBsProductName.text = produk?.namaProduk.orEmpty()
 
             cbProductAvailability.text = getString(R.string.cb_store_products_bs)

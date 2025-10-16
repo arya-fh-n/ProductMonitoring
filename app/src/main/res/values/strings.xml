@@ -51,5 +51,13 @@
     <string name="dialog_logout_message">Apa anda yakin ingin logout?</string>
     <string name="dialog_yes">Ya</string>
     <string name="dialog_no">Tidak</string>
+    <string name="tv_store_promo_bs_title">Laporan Promo</string>
+    <string name="tv_promo_price_hint">Harga promo</string>
+    <string name="tv_promo_remove_hint">* Kosongkan atau masukkan 0 untuk hapus promo</string>
+    <string name="toast_no_promo_changes">Tidak ada perubahan promo</string>
+    <string name="toast_promo_remove_success">Promo berhasil dihapus</string>
+    <string name="toast_promo_added_success">Promo berhasil ditambahkan</string>
+    <string name="tv_store_promo_title">List Promo %1s</string>
+    <string name="snackbar_error_store_id_missing">Tidak ada ID toko</string>
 
 </resources>

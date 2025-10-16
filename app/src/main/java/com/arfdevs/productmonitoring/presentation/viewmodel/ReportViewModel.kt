@@ -138,6 +138,14 @@ class ReportViewModel(
         _removePromo.postValue(uiState)
     }
 
+    fun clearReportPromoState() {
+        _reportPromo.postValue(UiState.Idle)
+    }
+
+    fun clearRemovePromoState() {
+        _removePromo.postValue(UiState.Idle)
+    }
+
     fun removeProductFromStore(idToko: Int, idProduk: Int) = viewModelScope.launch(dispatcher.io) {
         _removeProductFromStore.postValue(UiState.Loading)
 

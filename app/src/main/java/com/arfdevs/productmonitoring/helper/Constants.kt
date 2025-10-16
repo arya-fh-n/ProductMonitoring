@@ -52,6 +52,9 @@ object Constants {
         const val BS_PRODUK = "extra_bs_produk"
         const val BS_ID_TOKO = "extra_bs_id_toko"
         const val BS_IS_AVAILABLE = "extra_bs_is_available"
+
+        const val BS_PRODUK_TOKO = "extra_bs_produk_toko"
+        const val BS_PRODUK_TOKO_ID_TOKO = "extra_bs_produk_toko_id_toko"
     }
 
     const val HADIR = "hadir"
